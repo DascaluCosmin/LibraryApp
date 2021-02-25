@@ -9,4 +9,4 @@ exemplarelor disponibile în acel moment si poate imprumuta unul sau mai multe. 
 cartilor, exista un singur punct de lucru, deservit de un bibliotecar. Dupa fiecare împrumut/restituire,
 toți utilizatorii terminalelor bibliotecii văd lista actualizata a cartilor disponibile. Daca un utilizator 
 intarzie in a preda cartea, va fi notificat ca trebuie sa o predea, totodata, fiind penalizat - nu va putea
-imprumuta carti o perioada.
+imprumuta carti o perioada. Un utilizator va putea sa lase un scurt review al cartii atunci cand o restituie.
