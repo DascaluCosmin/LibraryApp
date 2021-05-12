@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="496.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AvailableBooksController">
+   <children>
+      <Label layoutX="405.0" layoutY="22.0" prefHeight="55.0" prefWidth="197.0" text="Bookterra">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.660305344421445" startX="0.38549613861637266" startY="0.061068716849989574">
+               <stops>
+                  <Stop color="#4985ba" />
+                  <Stop color="#4985ba" offset="0.007633587786259542" />
+                  <Stop color="#a17337fc" offset="0.49597929520025097" />
+                  <Stop color="#0acf5a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="76.0" layoutY="87.0" text="Available Books">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonAddToCart" layoutX="76.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#addToCart" prefHeight="36.0" prefWidth="84.0" text="Add to Cart" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonRemoveBookFromCart" layoutX="167.0" layoutY="435.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="125.0" text="Remove from Cart" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonAddToCart1" layoutX="840.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#borrowBooks" prefHeight="36.0" prefWidth="96.0" text="Borrow Books" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tableViewAvailableBooks" layoutX="76.0" layoutY="116.0" prefHeight="304.0" prefWidth="855.0">
+         <columns>
+            <TableColumn prefWidth="54.20001220703125" text="ISBN">
+               <cellValueFactory><PropertyValueFactory property="ISBN" /> </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="226.5999984741211" text="Title">
+               <cellValueFactory><PropertyValueFactory property="title" /> </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="176.40005493164062" text="Author">
+               <cellValueFactory><PropertyValueFactory property="author" /> </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="109.79998779296875" text="Publication Year">
+               <cellValueFactory><PropertyValueFactory property="publicationYear" /> </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="113.5999755859375" text="Edition">
+               <cellValueFactory><PropertyValueFactory property="edition" /> </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="175.20000000000005" text="Library">
+               <cellValueFactory><PropertyValueFactory property="library" /> </cellValueFactory>
+            </TableColumn>
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,2 +1,8 @@
 rootProject.name = 'Library'
+include 'LibraryAppClient'
+include 'LibraryAppDomain'
+include 'LibraryAppPersistence'
+include 'LibraryAppServices'
+include 'LibraryAppServer'
+include 'LibraryAppClient'
 
