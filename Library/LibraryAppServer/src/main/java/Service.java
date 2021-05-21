@@ -84,6 +84,14 @@ public class Service implements ServiceInterface {
         readerRepository.save(reader);
     }
 
+    @Override
+    public List<Book> getBorrowedBooksByReader(Reader reader) throws BookTerraException {
+        System.out.println("[Server]: Solving a getBorrowedBooksByReader...");
+        List<Book> borrowedBooks = new ArrayList<>();
+        bookRepository.findAllBorrowedByReader(reader).forEach(borrowedBooks::add);
+        return borrowedBooks;
+    }
+
     private void notifyClientsBorrowedBooks() {
         ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
         connectedClients.forEach((id, client) -> {

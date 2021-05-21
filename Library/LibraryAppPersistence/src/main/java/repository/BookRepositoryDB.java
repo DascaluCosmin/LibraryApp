@@ -1,6 +1,7 @@
 package repository;
 
 import domain.Book;
+import domain.Reader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -99,5 +100,10 @@ public class BookRepositoryDB implements BookRepository {
             }
         }
         return booksFilteredByIsAvailable;
+    }
+
+    @Override
+    public Iterable<Book> findAllBorrowedByReader(Reader reader) {
+        return null;
     }
 }
