@@ -84,8 +84,16 @@ public class AvailableBooksController extends UnicastRemoteObject implements Obs
     public void addToCart() {
         Book book = tableViewAvailableBooks.getSelectionModel().getSelectedItem();
         if (book != null) {
-//            System.out.println(tableViewAvailableBooks.getSelectionModel().getSelectedIndex());
             booksAddedToCart.add(book);
+            tableViewAvailableBooks.getSelectionModel().clearSelection();
+        }
+    }
+
+    public void removeBookFromCart() {
+        Book book = tableViewAvailableBooks.getSelectionModel().getSelectedItem();
+        if (book != null) {
+            booksAddedToCart.remove(book);
+            tableViewAvailableBooks.getSelectionModel().clearSelection();
         }
     }
 

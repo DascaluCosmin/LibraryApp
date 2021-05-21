@@ -1,7 +1,8 @@
 package view;
 
 import controller.AvailableBooksController;
-import controller.LoginViewController;
+import controller.LoginController;
+import controller.ManageBooksController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,20 +16,27 @@ public class LoginView {
     private static final String PATH_LOGIN_VIEW_FXML = "/views/LoginView.fxml";
     private Stage loginViewStage;
 
-    public LoginView(Stage primaryStage, ServiceInterface server, AvailableBooksController availableBooksController) throws IOException {
+    public LoginView(Stage primaryStage, ServiceInterface server, AvailableBooksController availableBooksController,
+                     ManageBooksController manageBooksController) throws IOException {
         FXMLLoader loginViewLoader = new FXMLLoader(getClass().getResource(PATH_LOGIN_VIEW_FXML));
 
         Parent loginViewRoot = loginViewLoader.load();
         loginViewStage = primaryStage;
         primaryStage.setTitle("BookTerra");
         primaryStage.setScene(new Scene(loginViewRoot));
+        loginViewStage = primaryStage;
 
-        LoginViewController loginViewController = loginViewLoader.getController();
+        LoginController loginViewController = loginViewLoader.getController();
         loginViewController.setLoginView(this);
         loginViewController.setServer(server);
         loginViewController.setAvailableBooksController(availableBooksController);
+        loginViewController.setManageBooksController(manageBooksController);
 
         primaryStage.show();
+    }
+
+    public void show() {
+        loginViewStage.show();
     }
 
     public void hide() {

@@ -48,7 +48,7 @@ public class Service implements ServiceInterface {
     }
 
     @Override
-    public synchronized Reader login(String username, String password, Observable observableClient) throws BookTerraException {
+    public synchronized Reader loginReader(String username, String password, Observable observableClient) throws BookTerraException {
         System.out.println("[Server]: Solving a login request...");
         Reader reader = readerRepository.findReaderByUsernameAndPassword(username, password);
         if (reader != null) {
@@ -76,6 +76,12 @@ public class Service implements ServiceInterface {
         booksToBorrow.forEach(reader::addBook);
         readerRepository.modify(reader);
         notifyClientsBorrowedBooks();
+    }
+
+    @Override
+    public void registerReader(Reader reader) throws BookTerraException {
+        System.out.println("[Server]: Solving a registerReader request...");
+        readerRepository.save(reader);
     }
 
     private void notifyClientsBorrowedBooks() {

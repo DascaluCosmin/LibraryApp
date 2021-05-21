@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="495.0" prefWidth="928.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ManageBooksForm">
+<AnchorPane prefHeight="495.0" prefWidth="928.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageBooksController">
    <children>
       <Label layoutX="369.0" layoutY="25.0" prefHeight="55.0" prefWidth="197.0" text="Bookterra">
          <font>

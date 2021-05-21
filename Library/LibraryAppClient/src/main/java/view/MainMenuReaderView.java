@@ -33,7 +33,7 @@ public class MainMenuReaderView {
         mainMenuReaderController.setLoggedInReader(loggedInReader);
     }
 
-    public void showMainMenuReaderView() {
+    public void show() {
         mainMenuReaderStage.show();
     }
 

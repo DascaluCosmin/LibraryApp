@@ -7,9 +7,11 @@ import java.util.List;
 
 public interface ServiceInterface {
 
-    Reader login(String username, String password, Observable observableClient) throws BookTerraException;
+    Reader loginReader(String username, String password, Observable observableClient) throws BookTerraException;
 
     List<Book> getAvailableBooks() throws BookTerraException;
 
     void borrowBooks(Reader reader, List<Book> booksToBorrow) throws BookTerraException;
+
+    void registerReader(Reader reader) throws BookTerraException;
 }

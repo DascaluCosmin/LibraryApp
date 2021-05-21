@@ -5,18 +5,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.ServiceInterface;
 import view.AvailableBooksView;
 import view.LoginView;
+import view.ManageBooksView;
 
 public class StartClient extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage)  {
         try {
             ApplicationContext factory = new ClassPathXmlApplicationContext("classpath:spring-client.xml");
             ServiceInterface server = (ServiceInterface) factory.getBean("BookTerraService");
             System.out.println("Obtained a reference to remote chat server");
 
             AvailableBooksView availableBooksView = new AvailableBooksView(server);
-            LoginView loginView = new LoginView(primaryStage, server, availableBooksView.getAvailableBooksController());
+            ManageBooksView manageBooksView = new ManageBooksView(server);
+            LoginView loginView = new LoginView(primaryStage, server, availableBooksView.getAvailableBooksController(),
+                    manageBooksView.getManageBooksController());
         } catch (Exception exception) {
             System.err.println("Client initialization exception: " + exception);
             exception.printStackTrace();
