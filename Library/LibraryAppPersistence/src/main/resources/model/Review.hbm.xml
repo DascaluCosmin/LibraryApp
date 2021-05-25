@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="domain.Review" table="REVIEWS">
+        <id name="ID" type="java.lang.Integer">
+            <column name="REVIEW_ID" />
+            <generator class="increment" />
+        </id>
+        <property name="text" type="java.lang.String" column="REVIEW_TEXT"/>
+        <many-to-one name="book" class="domain.Book" fetch="select">
+            <column name="BOOK_ID" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -20,13 +20,13 @@ public class Book implements Identifiable<Integer> {
     private Library library;
     private Date bookingDate;
     private Set<Reader> readers = new HashSet<>(0);
+    private Set<Review> reviews = new HashSet<>(0);
 
     public Book() {
 
     }
 
-    public Book(int ISBN, String title, Integer publicationYear, String edition, boolean isAvailable, String author, Library library, Date bookingDate, Set<Reader> readers) {
-        this.ISBN = ISBN;
+    public Book(String title, Integer publicationYear, String edition, boolean isAvailable, String author, Library library, Date bookingDate, Set<Reader> readers, Set<Review> reviews) {
         this.title = title;
         this.publicationYear = publicationYear;
         this.edition = edition;
@@ -35,6 +35,7 @@ public class Book implements Identifiable<Integer> {
         this.library = library;
         this.bookingDate = bookingDate;
         this.readers = readers;
+        this.reviews = reviews;
     }
 
     public String getTitle() {
@@ -121,6 +122,18 @@ public class Book implements Identifiable<Integer> {
         this.bookingDate = bookingDate;
     }
 
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+    }
+
     @Override
     public void setID(Integer id) {
         this.ISBN = id;
@@ -148,6 +161,6 @@ public class Book implements Identifiable<Integer> {
     public String toString() {
         return "Book = " + this.title + ", ISBN = " + this.ISBN + ", author = " + this.author + ", edition = " + this.edition +
                 ", publicationYear = " + this.publicationYear + ", isAvailable = " + this.isAvailable + ", booking date = " + this.bookingDate +
-                ", library = " + this.library;
+                ", library = " + this.library + ", number of review = " + this.reviews.size();
     }
 }

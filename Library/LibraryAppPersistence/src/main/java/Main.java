@@ -1,5 +1,6 @@
 import domain.Book;
 import domain.Reader;
+import domain.Review;
 import repository.*;
 
 import java.util.Date;
@@ -13,6 +14,18 @@ public class Main {
         LibraryRepository libraryRepository = new LibraryRepositoryDB();
         LibrarianRepository librarianRepository = new LibrarianRepositoryDB();
         ReaderRepository readerRepository = new ReaderRepositoryDB();
+        ReviewRepository reviewRepository = new ReviewRepositoryDB();
+
+//
+//        int id = reviewRepository.saveReturningID(review);
+//        System.out.println(id);
+
+//        book.addReview(review);
+//
+//
+//        bookRepository.modify(book);
+//        System.out.println(bookRepository.findOne(2));
+//        System.out.println(bookRepository.findOne(3));
 //
 //        Book book = bookRepository.findOne(3);
 //        System.out.println(book);

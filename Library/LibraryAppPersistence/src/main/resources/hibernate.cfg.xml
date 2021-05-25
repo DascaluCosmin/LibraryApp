@@ -21,5 +21,6 @@
         <mapping resource="model/Reader.hbm.xml" />
         <mapping resource="model/Library.hbm.xml" />
         <mapping resource="model/Librarian.hbm.xml" />
+        <mapping resource="model/Review.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

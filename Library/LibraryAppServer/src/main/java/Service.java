@@ -1,10 +1,7 @@
 import domain.Book;
 import domain.Librarian;
 import domain.Reader;
-import repository.BookRepository;
-import repository.LibrarianRepository;
-import repository.LibraryRepository;
-import repository.ReaderRepository;
+import repository.*;
 import service.BookTerraException;
 import service.Observable;
 import service.ServiceInterface;
@@ -26,17 +23,20 @@ public class Service implements ServiceInterface {
     private BookRepository bookRepository;
     private LibrarianRepository librarianRepository;
     private LibraryRepository libraryRepository;
+    private ReviewRepository reviewRepository;
     private Map<Integer, Observable> connectedClients = new ConcurrentHashMap<>();
 
     public Service() {
 
     }
 
-    public Service(ReaderRepository readerRepository, BookRepository bookRepository, LibrarianRepository librarianRepository, LibraryRepository libraryRepository) {
+    public Service(ReaderRepository readerRepository, BookRepository bookRepository, LibrarianRepository librarianRepository,
+                   LibraryRepository libraryRepository, ReviewRepository reviewRepository) {
         this.readerRepository = readerRepository;
         this.bookRepository = bookRepository;
         this.librarianRepository = librarianRepository;
         this.libraryRepository = libraryRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     public ReaderRepository getReaderRepository() {
@@ -69,6 +69,14 @@ public class Service implements ServiceInterface {
 
     public void setLibraryRepository(LibraryRepository libraryRepository) {
         this.libraryRepository = libraryRepository;
+    }
+
+    public ReviewRepository getReviewRepository() {
+        return reviewRepository;
+    }
+
+    public void setReviewRepository(ReviewRepository reviewRepository) {
+        this.reviewRepository = reviewRepository;
     }
 
     @Override
