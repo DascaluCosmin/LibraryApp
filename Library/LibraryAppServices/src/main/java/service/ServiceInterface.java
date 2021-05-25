@@ -16,6 +16,8 @@ public interface ServiceInterface {
 
     void borrowBooks(Reader reader, List<Book> booksToBorrow) throws BookTerraException;
 
+    Reader getReader(int id) throws BookTerraException;
+
     void registerReader(Reader reader) throws BookTerraException;
 
     List<Book> getBorrowedBooksByReader(Reader reader) throws BookTerraException ;
@@ -26,5 +28,8 @@ public interface ServiceInterface {
 
     boolean addBook(Librarian librarian, String title, String author, Integer publicationYear, String edition) throws BookTerraException;
 
-    Book removeBook(Book book);
+    Book removeBook(Book book) throws BookTerraException;
+
+    boolean returnBook(String username, int ISBN, String review);
+
 }

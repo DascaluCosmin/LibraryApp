@@ -44,6 +44,27 @@ public class ReaderRepositoryDB implements ReaderRepository {
     }
 
     @Override
+    public Reader findReaderByUsername(String username) {
+        Reader reader = null;
+        try (Session session = SESSION_FACTORY.openSession()) {
+            Transaction transaction = null;
+            try {
+                transaction = session.beginTransaction();
+                reader = (Reader) session.createQuery("from Reader r where r.username = ?1")
+                        .setParameter(1, username)
+                        .setMaxResults(1)
+                        .uniqueResult();
+
+            } catch (RuntimeException exception) {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+            }
+        }
+        return reader;
+    }
+
+    @Override
     public void save(Reader entity) {
         LOGGER.traceEntry("Saving {}", entity);
         try (Session session = SESSION_FACTORY.openSession()) {

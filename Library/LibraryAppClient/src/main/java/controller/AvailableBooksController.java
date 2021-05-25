@@ -106,6 +106,7 @@ public class AvailableBooksController extends UnicastRemoteObject implements Obs
                     loggedInReader.addBook(book);
                 });
                 server.borrowBooks(loggedInReader, booksAddedToCart);
+                loggedInReader = server.getReader(loggedInReader.getID());
 
                 SummaryBorrowedBooksView summaryBorrowedBooksView = new SummaryBorrowedBooksView(availableBooksView, booksAddedToCart);
                 summaryBorrowedBooksView.show();
@@ -118,6 +119,8 @@ public class AvailableBooksController extends UnicastRemoteObject implements Obs
                 System.err.println("Error at creating the Summary Borrowed Books View: " + exception);
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error at showing the confirmation for the borrowed books!");
                 alert.show();
+            } catch (RuntimeException exception) {
+                System.out.println("Error: " + exception);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please add a book to cart!");

@@ -163,12 +163,12 @@ public class Book implements Identifiable<Integer> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return ISBN == book.ISBN && isAvailable == book.isAvailable && Objects.equals(title, book.title) && Objects.equals(publicationYear, book.publicationYear) && Objects.equals(edition, book.edition) && Objects.equals(author, book.author);
+        return ISBN == book.ISBN;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ISBN, title, publicationYear, edition, isAvailable, author);
+        return Objects.hash(ISBN);
     }
 
     @Override

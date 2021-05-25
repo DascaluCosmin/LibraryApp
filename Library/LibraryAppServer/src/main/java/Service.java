@@ -1,6 +1,7 @@
 import domain.Book;
 import domain.Librarian;
 import domain.Reader;
+import domain.Review;
 import repository.*;
 import service.BookTerraException;
 import service.Observable;
@@ -127,11 +128,10 @@ public class Service implements ServiceInterface {
         System.out.println("[Server]: The books to borrow are:");
         booksToBorrow.forEach(System.out::println);
 
-        booksToBorrow.forEach(book -> {
-            book.setIsAvailable(false);
-            book.setBookingDate(new Date());
-        });
         booksToBorrow.forEach(reader::addBook);
+
+        System.out.println("[Server]: The reader's books are:");
+        reader.getBooks().forEach(System.out::println);
         readerRepository.modify(reader);
 
         notifyClients();
@@ -200,6 +200,37 @@ public class Service implements ServiceInterface {
         System.out.println("[Server]: The deleted book is: " + deletedBook);
         notifyClients();
         return deletedBook;
+    }
+
+    @Override
+    public boolean returnBook(String username, int ISBN, String reviewText) {
+        System.out.println("[Server]: Solving a returnBook request...");
+        System.out.println("[Server]: The reader's username is " + username + ", the ISBN of the book is " + ISBN);
+        Reader reader = readerRepository.findReaderByUsername(username);
+        if (reader == null) {
+            return false;
+        }
+        Book book = bookRepository.findOne(ISBN);
+        if (book == null) {
+            return false;
+        }
+        reader.removeBook(book);
+
+        book.setIsAvailable(true);
+        book.setBookingDate(null);
+        bookRepository.modify(book);
+        readerRepository.modify(reader);
+        if (!reviewText.isBlank()) {
+            Review review = new Review(reviewText, book);
+            reviewRepository.save(review);
+        }
+        notifyClients();
+        return true;
+    }
+
+    @Override
+    public Reader getReader(int id) {
+        return readerRepository.findOne(id);
     }
 
     private void notifyClients() {

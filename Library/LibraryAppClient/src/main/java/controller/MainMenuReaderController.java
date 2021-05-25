@@ -57,13 +57,15 @@ public class MainMenuReaderController extends UnicastRemoteObject {
 
     public void showBorrowedBooks() {
         try {
-            BorrowedBooksView burrowedBooksView = new BorrowedBooksView(server, this, loggedInReader);
+            BorrowedBooksView burrowedBooksView = new BorrowedBooksView(server, this, server.getReader(loggedInReader.getID()));
             burrowedBooksView.show();
             mainMenuReaderView.hide();
         } catch (IOException exception) {
             System.err.println("Error at showing the burrowed books: " + exception);
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error at showing the burrowed books!");
             alert.show();
+        } catch (BookTerraException exception) {
+            System.err.println("Error at showing the borrowed books!");
         }
     }
 }
