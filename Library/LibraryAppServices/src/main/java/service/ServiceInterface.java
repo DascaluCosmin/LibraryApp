@@ -25,4 +25,6 @@ public interface ServiceInterface {
     List<Book> getBookRegister() throws BookTerraException;
 
     boolean addBook(Librarian librarian, String title, String author, Integer publicationYear, String edition) throws BookTerraException;
+
+    Book removeBook(Book book);
 }

@@ -39,7 +39,25 @@ public class BookRepositoryDB implements BookRepository {
 
     @Override
     public Book delete(Integer integer) {
-        return null;
+        Book book = null;
+        try (Session session = SESSION_FACTORY.openSession()) {
+            Transaction transaction = null;
+            try {
+                transaction = session.beginTransaction();
+                String queryString = "SELECT b FROM Book b WHERE b.ISBN = ?1";
+                book = (Book) session.createQuery(queryString)
+                        .setParameter(1, integer)
+                        .setMaxResults(1)
+                        .uniqueResult();
+                session.delete(book);
+                transaction.commit();
+            } catch (RuntimeException exception) {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+            }
+        }
+        return book;
     }
 
     @Override

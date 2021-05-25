@@ -144,6 +144,10 @@ public class Book implements Identifiable<Integer> {
         reviews.add(review);
     }
 
+    public void clearReviews() {
+        reviews.clear();
+    }
+
     @Override
     public void setID(Integer id) {
         this.ISBN = id;
@@ -171,6 +175,6 @@ public class Book implements Identifiable<Integer> {
     public String toString() {
         return "Book = " + this.title + ", ISBN = " + this.ISBN + ", author = " + this.author + ", edition = " + this.edition +
                 ", publicationYear = " + this.publicationYear + ", isAvailable = " + this.isAvailable + ", booking date = " + this.bookingDate +
-                ", library = " + this.library + ", number of review = " + this.reviews.size();
+                ", library = " + this.library;
     }
 }

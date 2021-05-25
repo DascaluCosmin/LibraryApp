@@ -105,6 +105,28 @@ public class ManageBooksController extends UnicastRemoteObject implements Observ
         }
     }
 
+    public void removeBook() {
+        Book book = tableViewBorrowedBooks.getSelectionModel().getSelectedItem();
+        if (book != null) {
+            if (book.isAvailable()) {
+                Book deletedBook = server.removeBook(book);
+                if (deletedBook != null) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "The book has been deleted!");
+                    alert.show();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "The book couldn't be deleted!");
+                    alert.show();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "The book is already borrowed!");
+                alert.show();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a book to delete!");
+            alert.show();
+        }
+    }
+
     @Override
     public void updateGraphicalInterface() throws BookTerraException, RemoteException {
         Platform.runLater(this::reloadBooks);

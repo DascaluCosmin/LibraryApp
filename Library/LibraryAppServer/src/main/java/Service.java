@@ -192,6 +192,16 @@ public class Service implements ServiceInterface {
         return true;
     }
 
+    @Override
+    public Book removeBook(Book book) {
+        System.out.println("[Server]: Solving a removeBook request...");
+        System.out.println("[Server]: The book to delete is: " + book);
+        Book deletedBook = bookRepository.delete(book.getID());
+        System.out.println("[Server]: The deleted book is: " + deletedBook);
+        notifyClients();
+        return deletedBook;
+    }
+
     private void notifyClients() {
         ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
         connectedClients.forEach((id, client) -> {
