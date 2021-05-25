@@ -6822,13 +6822,13 @@
 														"$ref": "AAAAAAF5o5IiUMzEDtM="
 													},
 													"font": "Arial;13;0",
-													"left": 806.94873046875,
-													"top": 311.5,
-													"width": 282.1025390625,
+													"left": 791.4871826171875,
+													"top": 319.5,
+													"width": 121.025634765625,
 													"height": 13,
-													"alpha": 0.07224247613932046,
-													"distance": 152.3975065412817,
-													"text": "3 : addBook(title, author, publicationYear, edition)"
+													"alpha": 0.053520258920366104,
+													"distance": 56.08029957123981,
+													"text": "3 : addBook"
 												},
 												{
 													"_type": "NodeLabelView",
@@ -8219,8 +8219,7 @@
 									"connector": {
 										"$ref": "AAAAAAF5o5IiT8y2VKE="
 									},
-									"sequenceNumber": "3",
-									"arguments": "title, author, publicationYear, edition"
+									"sequenceNumber": "3"
 								},
 								{
 									"_type": "UMLMessage",
@@ -29856,6 +29855,37 @@
 							"name": "text",
 							"visibility": "private",
 							"type": "String"
+						}
+					]
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAF5pDPdTTGDRR8=",
+					"_parent": {
+						"$ref": "AAAAAAF4aAVQBBp4Fis="
+					},
+					"name": "Examen naspa"
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAF5pDPtWDH1ud4=",
+					"_parent": {
+						"$ref": "AAAAAAF4aAVQBBp4Fis="
+					},
+					"name": "SGDB",
+					"ownedElements": [
+						{
+							"_type": "UMLGeneralization",
+							"_id": "AAAAAAF5pDQKPzJ6A6Q=",
+							"_parent": {
+								"$ref": "AAAAAAF5pDPtWDH1ud4="
+							},
+							"source": {
+								"$ref": "AAAAAAF5pDPtWDH1ud4="
+							},
+							"target": {
+								"$ref": "AAAAAAF5pDPdTTGDRR8="
+							}
 						}
 					]
 				}
@@ -60062,13 +60092,13 @@
 												"$ref": "AAAAAAF5o4uupK0lsxI="
 											},
 											"font": "Arial;13;0",
-											"left": 895.42919921875,
+											"left": 919.525146484375,
 											"top": 511,
-											"width": 174.1416015625,
+											"width": 231.94970703125,
 											"height": 13,
-											"alpha": -0.09545370423963458,
-											"distance": 94.42986815621421,
-											"text": "3 : getBorrowedBooks(reader)"
+											"alpha": -0.061148158499923895,
+											"distance": 147.27525250360293,
+											"text": "3 : getBorrowedBooksByReader(reader)"
 										},
 										{
 											"_type": "NodeLabelView",
@@ -61040,7 +61070,7 @@
 											"height": 13,
 											"alpha": 0.3507278695493747,
 											"distance": 43.657759905886145,
-											"text": "5 [borrowedBooks.size > 0] : showBorrowedBooks"
+											"text": "5 : showBorrowedBooks"
 										},
 										{
 											"_type": "NodeLabelView",
@@ -61379,7 +61409,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF5otJ7WgMmgQ0="
 							},
-							"name": "getBorrowedBooks",
+							"name": "getBorrowedBooksByReader",
 							"source": {
 								"$ref": "AAAAAAF5o4qfw6i0uiM="
 							},
@@ -61426,8 +61456,7 @@
 							"connector": {
 								"$ref": "AAAAAAF5o4zpMbWcivE="
 							},
-							"sequenceNumber": "5",
-							"guard": "borrowedBooks.size > 0"
+							"sequenceNumber": "5"
 						}
 					],
 					"participants": [

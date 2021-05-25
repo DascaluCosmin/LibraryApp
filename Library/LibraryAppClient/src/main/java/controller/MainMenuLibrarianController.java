@@ -30,6 +30,7 @@ public class MainMenuLibrarianController extends UnicastRemoteObject {
 
     public void setManageBooksController(ManageBooksController manageBooksController) {
         this.manageBooksController = manageBooksController;
+        this.manageBooksController.getManageBooksView().setMainMenuLibrarianController(this);
     }
 
     public void setServer(ServiceInterface server) {
@@ -45,8 +46,9 @@ public class MainMenuLibrarianController extends UnicastRemoteObject {
     }
 
     public void showBookRegister() {
-        manageBooksController.getManageBooksView().show();
         manageBooksController.setLoggedInLibrarian(loggedInLibrarian);
+        manageBooksController.reloadBooks();
+        manageBooksController.getManageBooksView().show();
         mainMenuLibrarianView.hide();
     }
 }

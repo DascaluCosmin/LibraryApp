@@ -134,7 +134,7 @@ public class Service implements ServiceInterface {
         booksToBorrow.forEach(reader::addBook);
         readerRepository.modify(reader);
 
-        notifyClientsBorrowedBooks();
+        notifyClients();
     }
 
     @Override
@@ -170,7 +170,29 @@ public class Service implements ServiceInterface {
         return unreturnedBooks;
     }
 
-    private void notifyClientsBorrowedBooks() {
+    @Override
+    public List<Book> getBookRegister() {
+        System.out.println("[Server]: Solving a getBookRegister request...");
+        System.out.println("[Server]: The book register contains:");
+        List<Book> bookRegister = new ArrayList<>();
+        bookRepository.findAll().forEach(book -> {
+            System.out.println(book);
+            bookRegister.add(book);
+        });
+        return bookRegister;
+    }
+
+    @Override
+    public boolean addBook(Librarian librarian, String title, String author, Integer publicationYear, String edition) throws BookTerraException {
+        System.out.println("[Server]: Solving a addBook request...");
+        Book book = new Book(title, publicationYear, edition, true, author, librarian.getLibrary(), null);
+        System.out.println("[Server]: The book to add is: " + book);
+        bookRepository.save(book);
+        notifyClients();
+        return true;
+    }
+
+    private void notifyClients() {
         ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
         connectedClients.forEach((id, client) -> {
             if (client != null) {

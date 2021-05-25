@@ -26,6 +26,16 @@ public class Book implements Identifiable<Integer> {
 
     }
 
+    public Book(String title, Integer publicationYear, String edition, boolean isAvailable, String author, Library library, Date bookingDate) {
+        this.title = title;
+        this.publicationYear = publicationYear;
+        this.edition = edition;
+        this.isAvailable = isAvailable;
+        this.author = author;
+        this.library = library;
+        this.bookingDate = bookingDate;
+    }
+
     public Book(String title, Integer publicationYear, String edition, boolean isAvailable, String author, Library library, Date bookingDate, Set<Reader> readers, Set<Review> reviews) {
         this.title = title;
         this.publicationYear = publicationYear;

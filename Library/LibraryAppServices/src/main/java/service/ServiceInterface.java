@@ -21,4 +21,8 @@ public interface ServiceInterface {
     List<Book> getBorrowedBooksByReader(Reader reader) throws BookTerraException ;
 
     List<Book> getUnreturnedBooks(Reader reader) throws BookTerraException;
+
+    List<Book> getBookRegister() throws BookTerraException;
+
+    boolean addBook(Librarian librarian, String title, String author, Integer publicationYear, String edition) throws BookTerraException;
 }
