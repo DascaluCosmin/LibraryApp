@@ -1,6 +1,7 @@
 package view;
 
 import controller.AvailableBooksController;
+import controller.MainMenuReaderController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ public class AvailableBooksView {
     private static final String PATH_AVAILABLE_BOOKS_VIEW = "/views/AvailableBooksView.fxml";
 
     private AvailableBooksController availableBooksController;
+    private MainMenuReaderController mainMenuReaderController;
     private Stage availableBooksStage = new Stage();
 
     public AvailableBooksView(ServiceInterface server) throws IOException {
@@ -23,16 +25,29 @@ public class AvailableBooksView {
         availableBooksStage.setTitle("BookTerra");
         availableBooksStage.setScene(new Scene(availableBooksRoot));
 
+        availableBooksStage.setOnCloseRequest((event) -> {
+            hide();
+            mainMenuReaderController.getMainMenuReaderView().show();
+        });
+
         availableBooksController = availableBooksViewLoader.getController();
         availableBooksController.setAvailableBooksView(this);
         availableBooksController.setServer(server);
+    }
+
+    public void setMainMenuReaderController(MainMenuReaderController mainMenuReaderController) {
+        this.mainMenuReaderController = mainMenuReaderController;
+    }
+
+    public AvailableBooksController getAvailableBooksController() {
+        return availableBooksController;
     }
 
     public void show()  {
         availableBooksStage.show();
     }
 
-    public AvailableBooksController getAvailableBooksController() {
-        return availableBooksController;
+    public void hide() {
+        availableBooksStage.hide();
     }
 }

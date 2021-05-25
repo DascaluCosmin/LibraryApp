@@ -114,8 +114,4 @@ public class BookRepositoryDB implements BookRepository {
         return booksFilteredByIsAvailable;
     }
 
-    @Override
-    public Iterable<Book> findAllBorrowedByReader(Reader reader) {
-        return null;
-    }
 }

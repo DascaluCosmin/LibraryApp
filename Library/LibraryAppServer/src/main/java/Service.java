@@ -14,10 +14,13 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class Service implements ServiceInterface {
 
     private static final int NUMBER_OF_THREADS = 5;
+    private static final int NUMBER_OF_DAYS_UNRETURNED_BOOKS = 14;
 
     private ReaderRepository readerRepository;
     private BookRepository bookRepository;
@@ -130,6 +133,7 @@ public class Service implements ServiceInterface {
         });
         booksToBorrow.forEach(reader::addBook);
         readerRepository.modify(reader);
+
         notifyClientsBorrowedBooks();
     }
 
@@ -141,10 +145,29 @@ public class Service implements ServiceInterface {
 
     @Override
     public List<Book> getBorrowedBooksByReader(Reader reader) throws BookTerraException {
-        System.out.println("[Server]: Solving a getBorrowedBooksByReader...");
-        List<Book> borrowedBooks = new ArrayList<>();
-        bookRepository.findAllBorrowedByReader(reader).forEach(borrowedBooks::add);
+        System.out.println("[Server]: Solving a getBorrowedBooksByReader request...");
+        System.out.println("[Server]: The borrowed books by the reader " + reader.getUsername() + " are:");
+        List<Book> borrowedBooks = new ArrayList<>(reader.getBooks());
+        borrowedBooks.forEach(System.out::println);
         return borrowedBooks;
+    }
+
+    @Override
+    public List<Book> getUnreturnedBooks(Reader reader) throws BookTerraException {
+        System.out.println("[Server]: Solving a getUnreturnedBooksByReader request...");
+        System.out.println("[Server]: The reader's books are: ");
+        reader.getBooks().forEach(System.out::println);
+
+        System.out.println("[Server]: The unreturned books by the reader " + reader.getUsername() + " are:");
+        List<Book> unreturnedBooks = reader.getBooks().stream()
+                    .filter(book -> {
+                        long differenceInMilliseconds = new Date().getTime() - book.getBookingDate().getTime();
+                        long differenceInDays = TimeUnit.DAYS.convert(differenceInMilliseconds, TimeUnit.MILLISECONDS);
+                        return differenceInDays >= NUMBER_OF_DAYS_UNRETURNED_BOOKS;
+                    })
+                    .collect(Collectors.toList());
+        unreturnedBooks.forEach(System.out::println);
+        return unreturnedBooks;
     }
 
     private void notifyClientsBorrowedBooks() {

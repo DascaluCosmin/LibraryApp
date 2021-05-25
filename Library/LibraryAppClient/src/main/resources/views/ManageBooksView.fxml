@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="495.0" prefWidth="928.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageBooksController">
    <children>
@@ -48,37 +43,31 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <TextField fx:id="textFieldEditionAddBook" layoutX="757.0" layoutY="334.0" />
-      <Label layoutX="693.0" layoutY="336.0" text="Edition:">
+      <TextField fx:id="textFieldEditionAddBook" layoutX="765.0" layoutY="281.0" />
+      <Label layoutX="701.0" layoutY="283.0" text="Edition:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldTitleAddBook" layoutX="757.0" layoutY="219.0" />
-      <Label layoutX="712.0" layoutY="221.0" text="Title:">
+      <TextField fx:id="textFieldTitleAddBook" layoutX="765.0" layoutY="166.0" />
+      <Label layoutX="720.0" layoutY="168.0" text="Title:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldISBNAddBook" layoutX="757.0" layoutY="183.0" />
-      <Label layoutX="710.0" layoutY="185.0" text="ISBN:">
+      <TextField fx:id="textFieldAuthorAddBook" layoutX="765.0" layoutY="204.0" />
+      <Label fx:id="textFieldAuthorAddBook" layoutX="701.0" layoutY="206.0" text="Author:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldAuthorAddBook" layoutX="757.0" layoutY="257.0" />
-      <Label fx:id="textFieldAuthorAddBook" layoutX="693.0" layoutY="259.0" text="Author:">
+      <TextField fx:id="textFieldPublicationYearLoginAddBook" layoutX="765.0" layoutY="243.0" />
+      <Label layoutX="635.0" layoutY="245.0" text="Publication Year:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldPublicationYearLoginAddBook" layoutX="757.0" layoutY="296.0" />
-      <Label layoutX="627.0" layoutY="298.0" text="Publication Year:">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Button fx:id="buttonAddBook" layoutX="806.0" layoutY="372.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" text="Add new Book" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="buttonAddBook" layoutX="814.0" layoutY="319.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" text="Add new Book" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

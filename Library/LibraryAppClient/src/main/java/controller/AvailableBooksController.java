@@ -22,6 +22,7 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -67,7 +68,6 @@ public class AvailableBooksController extends UnicastRemoteObject implements Obs
     }
 
     public void reloadModelAvailableBooks() {
-        System.out.println(loggedInReader);
         try {
             modelAvailableBooks.setAll(server.getAvailableBooks());
             if (modelAvailableBooks.size() == 0) {
@@ -100,7 +100,13 @@ public class AvailableBooksController extends UnicastRemoteObject implements Obs
     public void borrowBooks() {
         if (booksAddedToCart.size() > 0) {
             try {
+                booksAddedToCart.forEach(book -> {
+                    book.setIsAvailable(false);
+                    book.setBookingDate(new Date());
+                    loggedInReader.addBook(book);
+                });
                 server.borrowBooks(loggedInReader, booksAddedToCart);
+
                 SummaryBorrowedBooksView summaryBorrowedBooksView = new SummaryBorrowedBooksView(availableBooksView, booksAddedToCart);
                 summaryBorrowedBooksView.show();
                 booksAddedToCart.clear();

@@ -2,10 +2,14 @@ package controller;
 
 import domain.Reader;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import service.BookTerraException;
 import service.ServiceInterface;
+import view.BorrowedBooksView;
 import view.MainMenuReaderView;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -34,6 +38,10 @@ public class MainMenuReaderController extends UnicastRemoteObject {
         this.mainMenuReaderView = mainMenuReaderView;
     }
 
+    public MainMenuReaderView getMainMenuReaderView() {
+        return mainMenuReaderView;
+    }
+
     public void setLoggedInReader(Reader loggedInReader) {
         this.loggedInReader = loggedInReader;
         availableBooksController.setLoggedInReader(loggedInReader);
@@ -43,6 +51,19 @@ public class MainMenuReaderController extends UnicastRemoteObject {
     public void showAvailableBooks() {
         availableBooksController.getAvailableBooksView().show();
         availableBooksController.reloadModelAvailableBooks();
+        availableBooksController.getAvailableBooksView().setMainMenuReaderController(this);
         mainMenuReaderView.hide();
+    }
+
+    public void showBorrowedBooks() {
+        try {
+            BorrowedBooksView burrowedBooksView = new BorrowedBooksView(server, this, loggedInReader);
+            burrowedBooksView.show();
+            mainMenuReaderView.hide();
+        } catch (IOException exception) {
+            System.err.println("Error at showing the burrowed books: " + exception);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error at showing the burrowed books!");
+            alert.show();
+        }
     }
 }

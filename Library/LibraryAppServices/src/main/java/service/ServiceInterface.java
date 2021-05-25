@@ -19,4 +19,6 @@ public interface ServiceInterface {
     void registerReader(Reader reader) throws BookTerraException;
 
     List<Book> getBorrowedBooksByReader(Reader reader) throws BookTerraException ;
+
+    List<Book> getUnreturnedBooks(Reader reader) throws BookTerraException;
 }
