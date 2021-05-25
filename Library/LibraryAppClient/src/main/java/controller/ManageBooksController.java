@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Librarian;
 import service.BookTerraException;
 import service.Observable;
 import service.ServiceInterface;
@@ -12,12 +13,17 @@ public class ManageBooksController extends UnicastRemoteObject implements Observ
 
     private ServiceInterface server;
     private ManageBooksView manageBooksView;
+    private Librarian loggedInLibrarian;
 
     public ManageBooksController() throws RemoteException {
     }
 
     public void setServer(ServiceInterface server) {
         this.server = server;
+    }
+
+    public void setLoggedInLibrarian(Librarian loggedInLibrarian) {
+        this.loggedInLibrarian = loggedInLibrarian;
     }
 
     public void setManageBooksView(ManageBooksView manageBooksView) {

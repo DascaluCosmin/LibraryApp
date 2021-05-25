@@ -5,10 +5,14 @@
 
     <bean id="readerRepository" class="repository.ReaderRepositoryDB" />
     <bean id="bookRepository" class="repository.BookRepositoryDB" />
+    <bean id="librarianRepository" class="repository.LibrarianRepositoryDB" />
+    <bean id="libraryRepository" class="repository.LibraryRepositoryDB" />
 
     <bean id="service" class="Service">
         <constructor-arg index="0" ref="readerRepository" />
         <constructor-arg index="1" ref="bookRepository" />
+        <constructor-arg index="2" ref="librarianRepository" />
+        <constructor-arg index="3" ref="libraryRepository" />
     </bean>
 
     <bean class="org.springframework.remoting.rmi.RmiServiceExporter">

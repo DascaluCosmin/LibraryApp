@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serial;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -16,20 +17,23 @@ public class Book implements Identifiable<Integer> {
     private String edition;
     private boolean isAvailable;
     private String author;
-    private String library; // TODO
+    private Library library;
+    private Date bookingDate;
     private Set<Reader> readers = new HashSet<>(0);
 
     public Book() {
 
     }
 
-    public Book(int ISBN, String title, Integer publicationYear, String edition, boolean isAvailable, String author, Set<Reader> readers) {
+    public Book(int ISBN, String title, Integer publicationYear, String edition, boolean isAvailable, String author, Library library, Date bookingDate, Set<Reader> readers) {
         this.ISBN = ISBN;
         this.title = title;
         this.publicationYear = publicationYear;
         this.edition = edition;
         this.isAvailable = isAvailable;
         this.author = author;
+        this.library = library;
+        this.bookingDate = bookingDate;
         this.readers = readers;
     }
 
@@ -97,12 +101,24 @@ public class Book implements Identifiable<Integer> {
         setID(ISBN);
     }
 
-    public String getLibrary() {
-        return "BCU";
+    public boolean isAvailable() {
+        return isAvailable;
     }
 
-    public void setLibrary(String library) {
+    public void setLibrary(Library library) {
         this.library = library;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public Date getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
     @Override
@@ -131,6 +147,7 @@ public class Book implements Identifiable<Integer> {
     @Override
     public String toString() {
         return "Book = " + this.title + ", ISBN = " + this.ISBN + ", author = " + this.author + ", edition = " + this.edition +
-                ", publicationYear = " + this.publicationYear + ", isAvailable = " + this.isAvailable;
+                ", publicationYear = " + this.publicationYear + ", isAvailable = " + this.isAvailable + ", booking date = " + this.bookingDate +
+                ", library = " + this.library;
     }
 }

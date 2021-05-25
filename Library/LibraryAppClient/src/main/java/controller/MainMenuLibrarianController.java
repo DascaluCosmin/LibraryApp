@@ -42,6 +42,7 @@ public class MainMenuLibrarianController extends UnicastRemoteObject {
 
     public void showManageBooksView() {
         manageBooksController.getManageBooksView().show();
+        manageBooksController.setLoggedInLibrarian(loggedInLibrarian);
         mainMenuLibrarianView.hide();
     }
 }

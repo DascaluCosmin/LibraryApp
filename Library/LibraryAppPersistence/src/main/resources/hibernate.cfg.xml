@@ -11,6 +11,7 @@
         <property name="hibernate.connection.password">admin</property>
 
         <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
 
         <!-- Echo all executed SQL to stdout -->
 <!--        <property name="show_sql">true</property>-->
@@ -18,5 +19,7 @@
 
         <mapping resource="model/Book.hbm.xml" />
         <mapping resource="model/Reader.hbm.xml" />
+        <mapping resource="model/Library.hbm.xml" />
+        <mapping resource="model/Librarian.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

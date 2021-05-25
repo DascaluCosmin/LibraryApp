@@ -44,6 +44,18 @@ public class BookRepositoryDB implements BookRepository {
 
     @Override
     public void modify(Book entity) {
+        try (Session session = SESSION_FACTORY.openSession()) {
+            Transaction transaction = null;
+            try {
+                transaction = session.beginTransaction();
+                session.update(entity);
+                transaction.commit();
+            } catch (RuntimeException exception) {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+            }
+        }
 
     }
 

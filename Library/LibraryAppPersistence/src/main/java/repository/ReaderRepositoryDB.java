@@ -88,18 +88,7 @@ public class ReaderRepositoryDB implements ReaderRepository {
             Transaction transaction = null;
             try {
                 transaction = session.beginTransaction();
-
                 session.update(entity);
-//                Reader readerToBeModified = session.get(Reader.class, entity.getID());
-//                if (readerToBeModified != null) {
-//                    readerToBeModified.setUsername(entity.getUsername());
-//                    readerToBeModified.setPassword(entity.getPassword());
-//                    readerToBeModified.setCNP(entity.getCNP());
-//                    readerToBeModified.setAddress(entity.getAddress());
-//                    readerToBeModified.setPhoneNumber(entity.getPhoneNumber());
-//                    readerToBeModified.setBooks(entity.getBooks());
-//                    session.update(readerToBeModified);
-//                }
                 transaction.commit();
             } catch (RuntimeException exception) {
                 if (transaction != null) {

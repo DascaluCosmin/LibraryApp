@@ -13,6 +13,7 @@
         <property name="edition" type="java.lang.String" column="BOOK_EDITION" />
         <property name="isAvailable" type="java.lang.Boolean" column="BOOK_IS_AVAILABLE" />
         <property name="author" type="java.lang.String" column="BOOK_AUTHOR" />
+        <property name="bookingDate" type="java.util.Date" column="BOOK_BOOKING_DATE" />
         <set name="readers" table="READERS_BOOKS" inverse="false" cascade="save-update" lazy="false" fetch="select">
             <key>
                 <column name="BOOK_ID" not-null="true" />
@@ -21,5 +22,8 @@
                 <column name="READER_ID" not-null="true" />
             </many-to-many>
         </set>
+        <many-to-one name="library" class="domain.Library" fetch="select">
+            <column name="LIBRARY_ID" not-null="true" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

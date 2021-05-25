@@ -1,6 +1,7 @@
 package service;
 
 import domain.Book;
+import domain.Librarian;
 import domain.Reader;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 public interface ServiceInterface {
 
     Reader loginReader(String username, String password, Observable observableClient) throws BookTerraException;
+
+    Librarian loginLibrarian(String username, String password, Observable observableClient) throws BookTerraException;
 
     List<Book> getAvailableBooks() throws BookTerraException;
 

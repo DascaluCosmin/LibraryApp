@@ -87,10 +87,10 @@ public class LoginController extends UnicastRemoteObject {
         String password = textFieldPassword.getText();
         if (!username.isBlank() && !password.isBlank()) {
             try {
-                Reader loggedInReader = server.loginReader(username, password, manageBooksController);
-                if (loggedInReader != null) {
+                Librarian loggedInLibrarian = server.loginLibrarian(username, password, manageBooksController);
+                if (loggedInLibrarian != null) {
                     System.out.println("Successful authentication!");
-                    MainMenuLibrarianView mainMenuLibrarianView = new MainMenuLibrarianView(server, manageBooksController, new Librarian()); // TODO
+                    MainMenuLibrarianView mainMenuLibrarianView = new MainMenuLibrarianView(server, manageBooksController, loggedInLibrarian);
                     mainMenuLibrarianView.show();
 
                     loginView.hide();

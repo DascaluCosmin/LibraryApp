@@ -19,6 +19,7 @@ public class HibernateSessionFactory {
             try {
                 instance = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             } catch (Exception exception) {
+                exception.printStackTrace();
                 System.err.println("Error at building the SessionFactory: " + exception);
                 StandardServiceRegistryBuilder.destroy(registry);
             }
