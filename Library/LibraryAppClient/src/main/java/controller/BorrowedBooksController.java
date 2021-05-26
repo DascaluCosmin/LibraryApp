@@ -16,6 +16,7 @@ import view.BorrowedBooksView;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class BorrowedBooksController extends UnicastRemoteObject implements Initializable {
@@ -67,8 +68,13 @@ public class BorrowedBooksController extends UnicastRemoteObject implements Init
 
     public void showUnreturnedBooks() {
         try {
-            modelBurrowedBooks.setAll(server.getUnreturnedBooks(loggedInReader));
+            List<Book> unreturnedBooks = server.getUnreturnedBooks(loggedInReader);
+            modelBurrowedBooks.setAll(unreturnedBooks);
             borrowedBooksLabel.setText(UNRETURNED_BOOKS_LABEL_TEXT);
+            if (unreturnedBooks.size() == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "You have no unreturned books!");
+                alert.show();
+            }
         } catch (BookTerraException exception) {
             System.err.println("Error at getting the unreturned books by reader: " + exception);
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error at getting the unreturned books!");

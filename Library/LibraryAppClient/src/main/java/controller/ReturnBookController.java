@@ -37,10 +37,10 @@ public class ReturnBookController extends UnicastRemoteObject {
     public void returnBook() {
         String readerUsername = textFieldReaderUsernameReturnBook.getText();
         String ISBNString = textFieldBookISBNReturnBook.getText();
-        String textReview = textFieldReview.getText();
+        String reviewText = textFieldReview.getText();
         if (!readerUsername.isBlank() && !ISBNString.isBlank()) {
             int ISBN = Integer.parseInt(ISBNString);
-            boolean result = server.returnBook(readerUsername, ISBN, textReview);
+            boolean result = server.returnBook(readerUsername, ISBN, reviewText);
             if (result) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "The book has been returned successfully!");
                 alert.show();

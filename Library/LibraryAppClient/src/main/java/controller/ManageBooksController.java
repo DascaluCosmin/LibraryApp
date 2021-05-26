@@ -89,8 +89,8 @@ public class ManageBooksController extends UnicastRemoteObject implements Observ
         if (!title.isBlank() && !author.isBlank() && !publicationYearString.isBlank() && !edition.isBlank()) {
             int publicationYear = Integer.parseInt(publicationYearString);
             try {
-                boolean result = server.addBook(loggedInLibrarian, title, author, publicationYear, edition);
-                if (!result) {
+                boolean success = server.addBook(loggedInLibrarian, title, author, publicationYear, edition);
+                if (!success) {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Error at adding the new book!");
                     alert.show();
                 }
@@ -109,9 +109,8 @@ public class ManageBooksController extends UnicastRemoteObject implements Observ
         Book book = tableViewBorrowedBooks.getSelectionModel().getSelectedItem();
         if (book != null) {
             if (book.isAvailable()) {
-                Book deletedBook = null;
                 try {
-                    deletedBook = server.removeBook(book);
+                    Book deletedBook = server.removeBook(book);
                     if (deletedBook != null) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "The book has been deleted!");
                         alert.show();
